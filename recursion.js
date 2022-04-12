@@ -57,24 +57,30 @@ function revString(str) {
 /** gatherStrings: given an object, return an array of all of the string values. */
 
 function gatherStrings(obj) {
+  console.log("inside gatherString, obj = ", obj);
   let objCopy = {...obj};
   let keyArr = Object.keys(objCopy);
   if (keyArr.length === 0) return [];
 
   for (let key in objCopy){
+    console.log("in for loop, key = ", key)
     if (typeof objCopy[key] === 'object'){
       return gatherStrings(objCopy[key]);
     } else {
+      console.log("in else, key =", key);
       let newString = objCopy[key];
       newString = typeof newString === 'string' ? newString : null;
       delete objCopy[key];
       if (newString !== null){
-        return [newString, ...gatherStrings(objCopy)];
+        let returnArr = [newString, ...gatherStrings(objCopy)];
+        console.log("return array: ", returnArr);
+        return returnArr;
       } else {
         return gatherStrings(objCopy);
       }
     }
   }
+  return gatherStrings(objCopy);
 }
 
 
