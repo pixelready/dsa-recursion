@@ -56,18 +56,25 @@ function revString(str) {
 
 /** gatherStrings: given an object, return an array of all of the string values. */
 
-function gatherStrings(obj, i=0) {
-  let keyArr = Object.keys(obj);
-  if (keyArr.length === i) return [];
+function gatherStrings(obj) {
+  let objCopy = {...obj};
+  let keyArr = Object.keys(objCopy);
+  if (keyArr.length === 0) return [];
 
-  if (typeof obj[keyArr[i]] === 'string') {
-    return [obj[keyArr[i]], ...gatherStrings(obj, i+1)];
+  for (let key in objCopy){
+    if (typeof objCopy[key] === 'object'){
+      return gatherStrings(objCopy[key]);
+    } else {
+      let newString = objCopy[key];
+      newString = typeof newString === 'string' ? newString : null;
+      delete objCopy[key];
+      if (newString !== null){
+        return [newString, ...gatherStrings(objCopy)];
+      } else {
+        return gatherStrings(objCopy);
+      }
+    }
   }
-
-  
-  
-  return gatherStrings(obj, i+1);
-
 }
 
 
