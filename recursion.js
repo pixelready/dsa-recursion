@@ -56,25 +56,29 @@ function revString(str) {
 
 /** gatherStrings: given an object, return an array of all of the string values. */
 
-function gatherStrings(obj, i=0) {
-  console.log("inside gatherString, obj = ", obj);
-  if (Object.keys(obj).length === i) return [];
-  let objCopy = {...obj};
-  let newString;
-  let returnArr = [];
+// function gatherStrings(obj, i=0) {
+//   console.log("inside gatherString, obj = ", obj);
+//   if (Object.keys(obj).length === i) return [];
+//   let objCopy = {...obj};
+//   let newString;
+//   let returnArr = [];
 
-  for (let key in objCopy){
-    console.log("in for loop, key = ", key)
-    if (typeof objCopy[key] === 'object'){
-      return gatherStrings(objCopy[key], i);
-    } else if (typeof objCopy[key] === 'string') {
-        newString.push(objCopy[key]);
-      }
-  }
-  returnArr = [newString, ...gatherStrings(objCopy, i+1)];
-  console.log("return array: ", returnArr);
-  return returnArr;
+//   for (let key in objCopy){
+//     console.log("in for loop, key = ", key)
+//     if (typeof objCopy[key] === 'object'){
+//       return gatherStrings(objCopy[key], i);
+//     } else if (typeof objCopy[key] === 'string') {
+//         newString.push(objCopy[key]);
+//       }
+//   }
+//   returnArr = [newString, ...gatherStrings(objCopy, i+1)];
+//   console.log("return array: ", returnArr);
+//   return returnArr;
 
+// }
+
+function gatherStrings(obj){
+  
 }
 
 
