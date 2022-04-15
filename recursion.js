@@ -78,7 +78,17 @@ function revString(str) {
 // }
 
 function gatherStrings(obj){
-  
+  console.log("inside gatherStrings, obj =", obj);
+  let flatObj = {};
+  for (let key in obj){
+    if (typeof obj[key] === 'object') {
+      return {...flatObj, ...gatherStrings(obj[key])};
+    } else {
+      flatObj[key] = obj[key]; 
+    }
+  }
+  console.log("flatObj = ", flatObj);
+  return Object.values(flatObj);
 }
 
 
